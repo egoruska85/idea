@@ -1,0 +1,20 @@
+
+<div class="container">
+  <center>
+    <h1><%= t('works.our_works').upcase %></h1>
+  </center>
+  <br><br>
+  <center>
+  <% @works.each do |work| %>
+    <%= link_to work.link, class:'btn btn-dark', target:'_blank', title: "#{work.name_ru if params[:locale] == 'ru'} #{work.name_en if params[:locale] == 'en'}" do %>
+
+      <p class="badge badge-pil">
+        <%= work.name_ru if params[:locale] == 'ru' %>
+        <%= work.name_en if params[:locale] == 'en' %>
+      </p><br>
+        <%= image_tag(work.image, style:'width: 300px') %>
+    <% end %>
+
+<% end %>
+  </center>
+</div>

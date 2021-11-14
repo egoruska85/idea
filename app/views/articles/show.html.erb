@@ -1,0 +1,30 @@
+<div class="container" style="min-height: 800px;">
+  <%= image_tag @article.image %>
+  <h1><%= @article.title_ru %></h1>
+  <hr>
+  <%= @article.body %>
+  <br>
+</div>
+<div class="container">
+  <%= 'Без комментариев' if @article.comments.empty? %>
+  <% @article.comments.each do |comment| %>
+  <hr>
+
+  <p><strong>Автор:</strong> <%= comment.author %> ; Время: <%= comment.created_at %></p>
+  <p><%= comment.body %></p>
+  <hr>
+  <% end %>
+
+
+  <%= form_for([@article, @article.comments.build]) do |f| %>
+
+
+      <%= f.label 'Комментарий' %>
+<hr>
+      <%= f.text_area :body, class:"form-control", style:"width: 800px", rows:"6"  %>
+
+<br>
+    <p><%= f.submit 'Оставить комментарий', class:"btn btn-dark" %></p>
+  <% end %>
+
+</div>

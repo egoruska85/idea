@@ -1,0 +1,24 @@
+<center>
+  <% if @articles.empty? %>
+    <%= link_to root_path, :class => 'btn btn-dark' do %>
+      NO POST,<br>
+      ON MAIN
+    <% end %>
+  <% end %>
+</center>
+<div class="container">
+<% @articles.each do |article| %>
+  <div>
+    <%= link_to article_path(article), class:'btn btn-dark' do %>
+    <%= image_tag(article.image)%>
+      <%= article.title_ru %>
+
+
+
+    <% end %>
+    <div class="container">
+    <p style="color: white;"><%= truncate article.body, length: 200 %></p>
+    </div>
+  </div>
+<% end %>
+</div>

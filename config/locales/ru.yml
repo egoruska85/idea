@@ -1,0 +1,11 @@
+ru:
+  works:
+    our_works: "наши работы"
+  layout:
+    portfolio: "портфолио"
+    blog: "IT БЛОГ"
+    contacts: "контакты"
+    our_contacts: "наши контакты"
+  item:
+    email: "Эл. Почта: "
+    phone: "Телефон: "    

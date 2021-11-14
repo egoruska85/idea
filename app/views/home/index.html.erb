@@ -1,0 +1,132 @@
+<head>
+
+
+
+
+</head>
+
+  <div class="container-fluid demo-1" style="background-image: url('/images/maska_totem_dym_192795_1920x1080.jpg')">
+    <header>
+      <center>
+        <strong>
+          <h1 class="title-deviz">IDEA STUDIO</h1>
+        </strong>
+      </center>
+
+    </header>
+    <!-- a low-tech hack for pre-loading the images -->
+    <div class="preload" style="overflow: hidden; width: 0px; height: 0px">
+      <img src="/images/site1.jpg" />
+      <img src="/images/site2.jpg" />
+      <img src="/images/site3.jpg" />
+      <img src="/images/site3r.jpg" />
+      <img src="/images/site4.jpg" />
+      <img src="/images/site4r.jpg" />
+    </div>
+    <!-- Top Navigation -->
+
+
+    <div class="main clearfix">
+
+      <div class="md-slider">
+        <div class="md-device-wrapper">
+          <div class="md-device md-device-1">
+            <a href="/login/index"><img src="/images/site1.jpg" /></a>
+            <div class="md-border-element"></div>
+            <div class="md-base-element"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /container -->
+
+  <center>
+
+    <h2>
+      <span id="p1">
+        <% @about.each do |item|%>
+          <%= item.title_ru if params[:locale] != true and params[:locale] != 'ru' and params[:locale] != 'en' %>
+          <%= item.title_ru if params[:locale] == 'ru' %>
+          <%= item.title_en if params[:locale] == 'en' %>
+        <% end %>
+      </span>
+    </h2>
+
+  </center>
+<div class="container">
+
+    <center>
+      <div class="parallax" style="background-image: url('/images/teahub.io-binary-wallpaper-220288.png')" >
+        <br>
+          <div>
+            <span class="badge bg-dark">
+              <h1><%= t('layout.our_contacts').upcase %></h1>
+            <span>
+          </div>
+        <br>
+          <div class="badge bg-dark" style="background: black; min-height: 300px; width: 1200px;">
+            <br>
+
+            <% @emails.each do |item| %>
+              <h3><%= t('item.email')%><%= mail_to "#{item.email}" %></h3>
+            <% end %>
+            <% @phones.each do |item| %>
+              <h3><%= t('item.phone')%><%= item.phone %></h3>
+            <% end %>
+
+          </div>
+      </div>
+
+
+    </center>
+
+
+</div>
+
+  <script src="/js/morphingdevice.js"></script>
+  <script>
+    var el = document.querySelector( '.md-slider' ),
+      settings = {
+        autoplay : true,
+        interval : 3000,
+        devices : [
+          { cName : 'md-device-1', canRotate : false, imgsrc : '/images/site1.jpg' },
+          { cName : 'md-device-2', canRotate : false, imgsrc : '/images/site2.jpg' },
+          { cName : 'md-device-3', canRotate : true, imgsrc : '/images/site3.jpg', rotatedsrc : '/images/site3r.jpg' },
+          { cName : 'md-device-4', canRotate : true, imgsrc : '/images/site4.jpg', rotatedsrc : '/images/site4r.jpg' }
+        ]
+      },
+      devicesTotal = settings.devices.length,
+      ds = MorphingDevice( el, settings );
+
+    // create navigation triggers
+    var nav = document.createElement( 'nav' );
+    for( var i = 0; i < devicesTotal; ++i ) {
+
+      var trigger = document.createElement( 'a' );
+      trigger.className = i === 0 ? 'md-current' : '';
+      trigger.setAttribute( 'href', '#' );
+      trigger.setAttribute( 'pos', i );
+      trigger.onclick = function( event ) {
+
+        ds.stopSlideshow();
+        var pos = Number( event.target.getAttribute( 'pos' ) );
+        if( pos === ds.getCurrent() ) {
+          return false;
+        }
+        ds.updateCurrentTrigger( event.target );
+        ds.setCurrent( pos );
+        ds.changeDevice();
+        return false;
+
+      };
+      nav.appendChild( trigger );
+
+    }
+    el.appendChild( nav );
+
+    if( settings.autoplay ) {
+      ds.startSlideshow();
+    }
+  </script>
+</body>

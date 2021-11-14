@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IDEA STUDIO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'style', media: 'all' %>
+    <script src="/js/modernizr.custom.js"></script>
+    <script src="/js/custom.js"></script>
+  </head>
+
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-light nav-color sticky-top" id="navbar">
+    <div class="container-fluid">
+      <%= link_to root_path, :class => 'main_link' do %>
+        <%= image_tag "/images/LOGO.png", :alt=> '', :width => '80', :height => '72' %>
+      <% end %>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon btn btn-light link"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to works_path, :class => 'nav-link active link' do %>
+              <%= t('layout.portfolio').upcase %>
+            <% end %>
+          </li>
+        <li class="nav-item">
+          <%= link_to articles_path, :class => 'nav-link active link' do %>
+            <%= t('layout.blog').upcase %>
+          <% end %>
+        </li>
+          <li class="nav-item">
+            <%= link_to root_path + '#p1', :class => 'nav-link active link' do %>
+              <%= t('layout.contacts').upcase %>
+            <% end %>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+
+
+  </nav>
+
+    <%= yield %>
+
+
+  <div class="container">
+    <center>
+      <h6>IDEA STUDIO&copy; 2021</h6>
+    </center>
+  </div>
+
+
+  </body>
+</html>
