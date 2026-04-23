@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Портфолио дизайнера инфографики</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white font-sans">
+
+  <!-- Header -->
+  <header class="flex justify-between items-center p-6 border-b border-gray-800">
+    <a href="/" class="flex items-center space-x-3">
+      <img src="images/logo.png" alt="IDEA logo" class="w-8 h-8 object-contain">
+      <h1 class="text-2xl font-bold">IDEA</h1>
+    </a>
+    <nav class="space-x-6">
+      <a href="#about" class="hover:text-pink-400">Обо мне</a>
+      <a href="#works" class="hover:text-pink-400">Работы</a>
+      <a href="#services" class="hover:text-pink-400">Услуги</a>
+      <a href="#contact" class="hover:text-pink-400">Контакты</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="text-center py-24 px-6">
+    <h2 class="text-4xl md:text-6xl font-bold mb-6">
+      Дизайнер инфографики
+    </h2>
+    <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+      Создаю продающие карточки товаров, инфографику и визуальный контент для маркетплейсов
+    </p>
+    <button class="bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-2xl text-lg">
+      Смотреть работы
+    </button>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="px-6 py-16 max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-6">Обо мне</h2>
+    <p class="text-gray-400">
+      Я дизайнер инфографики, специализируюсь на создании визуально привлекательных и продающих карточек товаров. Помогаю брендам выделяться и увеличивать продажи.
+    </p>
+  </section>
+
+  <!-- Works -->
+  <section id="works" class="px-10 py-16">
+    <h2 class="text-3xl font-bold mb-8 text-center">Мои работы</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-gray-800 h-60 rounded-xl"></div>
+      <div class="bg-gray-800 h-60 rounded-xl"></div>
+      <div class="bg-gray-800 h-60 rounded-xl"></div>
+      <div class="bg-gray-800 h-60 rounded-xl"></div>
+      <div class="bg-gray-800 h-60 rounded-xl"></div>
+      <div class="bg-gray-800 h-60 rounded-xl"></div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="px-6 py-16">
+    <h2 class="text-3xl font-bold text-center mb-8">Услуги</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div class="bg-gray-900 p-6 rounded-2xl">
+        <h3 class="text-xl mb-2">Карточки товаров</h3>
+        <p class="text-gray-400">Создание инфографики для маркетплейсов</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-2xl">
+        <h3 class="text-xl mb-2">Баннеры</h3>
+        <p class="text-gray-400">Рекламные баннеры и промо</p>
+      </div>
+      <div class="bg-gray-900 p-6 rounded-2xl">
+        <h3 class="text-xl mb-2">Редизайн</h3>
+        <p class="text-gray-400">Улучшение существующих карточек</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="px-6 py-16 text-center">
+    <h2 class="text-3xl font-bold mb-6">Связаться со мной</h2>
+    <p class="text-gray-400 mb-6">Напишите мне для сотрудничества</p>
+    <button class="bg-green-600 px-6 py-3 rounded-xl hover:bg-green-700">
+      Написать
+    </button>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center p-6 border-t border-gray-800 text-gray-500">
+    © <%= Time.now.year %> IDEA Все права защищены
+  </footer>
+
+</body>
+</html>
