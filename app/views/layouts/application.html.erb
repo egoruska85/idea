@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Idea</title>
-    <%= favicon_link_tag '/images/logo.png' %>
+    <%= display_meta_tags title: @page_title, description: @page_description, keywords: @page_keywords %>
+    <% if Logo.last.present? %>
+      <%= favicon_link_tag url_for(Logo.last.logo) %>
+    <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="/assets/tailwind.js"></script>
+
+
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-gray-950 text-white font-sans min-h-screen flex flex-col">
+    <%= render 'layouts/flash' %>
+    <%# Контент страницы (растягивается, толкая футер вниз) %>
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+
+    <%# Футер (всегда в самом низу) %>
+    <footer class="text-center p-10 border-t border-gray-900 bg-gray-950 mt-auto">
+      <%# Вызов нашего нового паршиала %>
+      <%= render 'include/contact_info' %>
+
+      <div class="mt-8 pt-8 border-t border-gray-900/50 text-gray-600 text-sm">
+        © <%= Time.now.year %> <span class="text-gray-400 font-bold">IDEA</span>. Все права защищены.
+      </div>
+    </footer>
+
   </body>
 </html>

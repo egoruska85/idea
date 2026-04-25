@@ -79,3 +79,10 @@ gem 'devise-bootstrap-views'
 
 gem 'rails-i18n'
 gem 'rails_admin-i18n'
+
+gem 'simple_form'
+gem 'mail_form'
+gem "meta-tags"
+gem 'kaminari'
+
+gem "tailwindcss-rails", "~> 4.4"
