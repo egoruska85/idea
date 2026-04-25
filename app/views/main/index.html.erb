@@ -3,91 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Портфолио дизайнера инфографики</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!--<title>Портфолио дизайнера инфографики</title>-->
+
 </head>
-<body class="bg-gray-950 text-white font-sans">
+  <body class="bg-gray-950 text-white font-sans">
 
-  <!-- Header -->
-  <header class="flex justify-between items-center p-6 border-b border-gray-800">
-    <a href="/" class="flex items-center space-x-3">
-      <img src="images/logo.png" alt="IDEA logo" class="w-8 h-8 object-contain">
-      <h1 class="text-2xl font-bold">IDEA</h1>
-    </a>
-    <nav class="space-x-6">
-      <a href="#about" class="hover:text-pink-400">Обо мне</a>
-      <a href="#works" class="hover:text-pink-400">Работы</a>
-      <a href="#services" class="hover:text-pink-400">Услуги</a>
-      <a href="#contact" class="hover:text-pink-400">Контакты</a>
-    </nav>
-  </header>
+    <%= render 'include/navbar' %>
 
-  <!-- Hero -->
-  <section class="text-center py-24 px-6">
-    <h2 class="text-4xl md:text-6xl font-bold mb-6">
-      Дизайнер инфографики
-    </h2>
-    <p class="text-gray-400 max-w-2xl mx-auto mb-8">
-      Создаю продающие карточки товаров, инфографику и визуальный контент для маркетплейсов
-    </p>
-    <button class="bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-2xl text-lg">
-      Смотреть работы
-    </button>
-  </section>
+    <!-- Hero -->
+    <section class="text-center py-24 px-6">
+      <h2 class="text-4xl md:text-6xl font-bold mb-6">
+        Дизайнер инфографики
+      </h2>
+      <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+        Создаю продающие карточки товаров, инфографику и визуальный контент для маркетплейсов
+      </p>
+      <%= link_to 'Смотреть работы', works_path, class:"bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-2xl text-lg" %>
 
-  <!-- About -->
-  <section id="about" class="px-6 py-16 max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-6">Обо мне</h2>
-    <p class="text-gray-400">
-      Я дизайнер инфографики, специализируюсь на создании визуально привлекательных и продающих карточек товаров. Помогаю брендам выделяться и увеличивать продажи.
-    </p>
-  </section>
+    </section>
 
-  <!-- Works -->
-  <section id="works" class="px-10 py-16">
-    <h2 class="text-3xl font-bold mb-8 text-center">Мои работы</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-gray-800 h-60 rounded-xl"></div>
-      <div class="bg-gray-800 h-60 rounded-xl"></div>
-      <div class="bg-gray-800 h-60 rounded-xl"></div>
-      <div class="bg-gray-800 h-60 rounded-xl"></div>
-      <div class="bg-gray-800 h-60 rounded-xl"></div>
-      <div class="bg-gray-800 h-60 rounded-xl"></div>
-    </div>
-  </section>
+    <!-- About -->
+    <section id="about" class="px-6 py-16 max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">Обо мне</h2>
+      <p class="text-gray-400">
 
-  <!-- Services -->
-  <section id="services" class="px-6 py-16">
-    <h2 class="text-3xl font-bold text-center mb-8">Услуги</h2>
-    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-      <div class="bg-gray-900 p-6 rounded-2xl">
-        <h3 class="text-xl mb-2">Карточки товаров</h3>
-        <p class="text-gray-400">Создание инфографики для маркетплейсов</p>
+        <%= @about.about %>
+      </p>
+    </section>
+
+    <!-- Works -->
+    <section id="works" class="px-10 py-16">
+      <h2 class="text-3xl font-bold mb-8 text-center">Мои работы</h2>
+      <div class="grid md:grid-cols-3 gap-6 text-center">
+        <% if @works.present? %>
+          <% @works.each do |work| %>
+            <div class="bg-gray-800 p-4 rounded-xl transition hover:scale-105 hover:shadow-lg">
+              <h4 class="text-yellow-400 text-lg"><%= work.title %></h4>
+              <p class="text-gray-400 text-sm"><%= work.service.title %></p>
+
+              <p class="mt-2 text-sm">
+                <%= truncate(work.body, length: 100) %>
+              </p>
+
+              <% if work.images.attached? %>
+                <img src="<%= url_for(work.images.first) %>" class="w-24 mx-auto my-2 rounded" />
+              <% end %>
+
+              <%= link_to 'Подробнее', work_path(work),
+                class:'bg-blue-500 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-full inline-block mt-2' %>
+            </div>
+          <% end %>
+        <% end %>
       </div>
-      <div class="bg-gray-900 p-6 rounded-2xl">
-        <h3 class="text-xl mb-2">Баннеры</h3>
-        <p class="text-gray-400">Рекламные баннеры и промо</p>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="px-6 py-16">
+      <h2 class="text-3xl font-bold text-center mb-8">Услуги</h2>
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <% @services.each do |service| %>
+        <div class="bg-gray-900 p-6 rounded-2xl">
+          <h3 class="text-xl mb-2"><%= service.title %></h3>
+          <p class="text-gray-400"><%= service.body %></p>
+        </div>
+        <% end %>
       </div>
-      <div class="bg-gray-900 p-6 rounded-2xl">
-        <h3 class="text-xl mb-2">Редизайн</h3>
-        <p class="text-gray-400">Улучшение существующих карточек</p>
+    </section>
+
+    <!-- Contact -->
+    <section id="contacts" class="px-6 py-16 text-center">
+      <h2 class="text-3xl font-bold mb-6">Связаться со мной</h2>
+      <p class="text-gray-400 mb-6">Напишите мне для сотрудничества</p>
+      <div data-controller="modal">
+        <!-- Кнопка вызова -->
+        <button type="button"
+                data-action="click->modal#open"
+                class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl transition-all active:scale-95 shadow-lg shadow-green-900/20">
+          Написать
+        </button>
+
+        <!-- Модальное окно (скрыто по умолчанию) -->
+        <div data-modal-target="overlay"
+             class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm bg-black/60 transition-opacity">
+
+          <!-- Контент окна -->
+          <div class="bg-gray-900 border border-gray-800 w-full max-w-lg rounded-3xl shadow-2xl transform transition-all">
+            <div class="p-6 flex justify-between items-center border-b border-gray-800">
+              <h3 class="text-xl font-bold">Оставить заявку</h3>
+              <button data-action="click->modal#close" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+
+            <div class="p-6">
+              <%# Сюда вставляем форму, которую мы делали раньше %>
+              <%= render 'mailform' %>
+            </div>
+          </div>
+
+          <!-- Задний фон (клик для закрытия) -->
+          <div class="absolute inset-0 -z-10" data-action="click->modal#close"></div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Contact -->
-  <section id="contact" class="px-6 py-16 text-center">
-    <h2 class="text-3xl font-bold mb-6">Связаться со мной</h2>
-    <p class="text-gray-400 mb-6">Напишите мне для сотрудничества</p>
-    <button class="bg-green-600 px-6 py-3 rounded-xl hover:bg-green-700">
-      Написать
-    </button>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="text-center p-6 border-t border-gray-800 text-gray-500">
-    © <%= Time.now.year %> IDEA Все права защищены
-  </footer>
-
-</body>
+    <!-- Footer -->
+    <script src="/assets/js/script.js"></script>
+  </body>
 </html>
