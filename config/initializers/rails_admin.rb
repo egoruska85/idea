@@ -11,7 +11,7 @@ RailsAdmin.config do |config|
     unless is_only_user || warden.user.admin?
       redirect_to main_app.root_path, alert: "Доступ запрещен!"
     end
-
+  end  
   ## == Devise ==
   config.authenticate_with do
     warden.authenticate! scope: :user
