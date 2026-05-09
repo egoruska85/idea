@@ -88,5 +88,3 @@ gem 'simple_form'
 gem 'mail_form'
 gem "meta-tags"
 gem 'kaminari'
-
-gem "tailwindcss-rails", "~> 4.4"
