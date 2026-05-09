@@ -75,7 +75,7 @@ group :test do
 end
 
 gem 'bootstrap', '~> 5.3.8'
-gem 'sassc-rails'
+gem 'dartsass-rails'
 gem 'rails_admin', '~> 3.3'
 gem 'devise'
 gem "devise-i18n"
