@@ -1,48 +1,59 @@
+<div class="w-full max-w-xs">
+  <h1 class="font-hairline mb-6 text-center">Edit <%= resource_name.to_s.humanize %></h1>
 
-<div class="container shadow-lg p-3 mb-5 bg-body rounded border border-light" style="width: 400px;">
-  <h5>Изменение: <%= current_user.username %></h5>
+  <%= form_for(resource,
+                 as: resource_name,
+                 url: registration_path(resource_name),
+                 html: {
+                         method: :put,
+                         class: "bg-white mb-4 px-8 pt-6 pb-8 rounded shadow-md"
+                 }
+        ) do |f| %>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= bootstrap_devise_error_messages! %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
+  <%= devise_error_messages! %>
 
-    <div class="form-group">
-      <%= f.label :username %>
-      <%= f.text_field :username, autofocus: true, class:'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :phone %>
-      <%= f.text_field :phone, autofocus: true, class:'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
-    </div>
+  <div class="mb-4">
+    <%= f.label :email, class: "block font-bold mb-2 text-gray-700 text-sm"  %><br />
+    <%= f.email_field :email,
+                              autofocus: true,
+                              autocomplete: "email",
+                              class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none shadow focus:shadow-outline" %>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
-
-      <small class="form-text text-muted"><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></small>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :current_password %>
-      <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
-
-      <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit t('.update'), class: 'btn btn-primary' %>
-    </div>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <p><%= t('.unhappy') %>? <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>.</p>
+  <div class="mb-4">
+    <%= f.label :password, class: "block font-bold mb-2 text-gray-700 text-sm" %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
 
-  <%= link_to t('.back'), :back %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :password_confirmation, class: "block font-bold mb-2 text-gray-700 text-sm"  %>
+    <%= f.password_field :password_confirmation,
+                                 autocomplete: "new-password",
+                                 class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+            %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :current_password, class: "block font-bold mb-2 text-gray-700 text-sm" %>
+    <%= f.password_field :current_password,
+                                 autocomplete: "current-password",
+                                 class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                                 
+            %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update", class: "button bg-blue-500 hover:bg-blue-700 font-bold text-white focus:outline-none py-2 px-4 rounded focus:shadow-outline w-full" %>
+  </div>
+  <% end %>
+
+  <p>Unhappy? <span><%= button_to "Delete my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></span></p>
+
+  <%= link_to "Back", :back %>
 </div>
