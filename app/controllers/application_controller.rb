@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_locale, :set_variables, :set_mailer_settings
+  before_action :set_locale, :set_variables#, :set_mailer_settings
 
   private
 
