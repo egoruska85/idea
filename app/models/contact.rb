@@ -21,7 +21,7 @@ class Contact < MailForm::Base
   def headers
     {
       subject: "Сообшение от сайт IDEA",
-      to: "egorarbuzov@gmail.com",
+      to: "idea-russian@yandex.com",
       from: %("#{name}" <#{sender}>)
     }
   end
